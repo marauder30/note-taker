@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.3/flatly/bootstrap.min.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 </head>
 
 <body>
@@ -18,7 +18,6 @@
     </a>
     <div class="icons">
       <i class="fas fa-save text-light save-note"></i>
-      <i class="fas fa-pen text-light new-note"></i>
     </div>
   </nav>
   <div class="container-fluid">
@@ -32,6 +31,7 @@
       <div class="col-8">
         <input class="note-title" placeholder="Note Title" maxlength="28" type="text" id="noteTitle">
         <textarea class="note-textarea" placeholder="Note Text" id="noteText"></textarea>
+        <button class="fas fa-pen text-dark new-note submit"></button>
       </div>
     </div>
   </div>
@@ -40,3 +40,28 @@
 </body>
 
 </html>
+
+<script type ="text/javascript">
+
+$(".submit").on("click", function(event) {
+  event.preventDefault();
+
+
+
+  let newNote = {
+    noteTitle: $("#noteTitle").val().trim(),
+    noteText: $("#noteText").val().trim(),
+  };
+
+
+  console.log(newNote);
+
+  $.post("/api/notes", newNote, 
+     function(data) {
+       alert("Your note has been saved!");
+       $("#noteTitle").val("");
+       $("noteText").val("");
+     })
+})
+
+</script>

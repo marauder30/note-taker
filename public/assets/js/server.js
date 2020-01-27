@@ -4,7 +4,13 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
-const noteData = [];
+const noteData = [
+    {
+        noteTitle: "Your title here",
+        noteText: "Your text here",
+        NoteID: 0
+    }
+];
 
 // Set up Express app
 
@@ -16,6 +22,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 
 // Router

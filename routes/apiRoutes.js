@@ -16,20 +16,19 @@ app.get("/api/notes"), function(req, res) {
 //  use ++integer (instead of i++) to add ID to notes, so they are accessible to delete
 
 app.post("/api/notes"), function(req, res) {
-    let note = req.body;
-    ++note.noteID;
-    noteData.push(note);
-    res.json(note);
+
+    noteData.push(req.body);
+    res.json(true);
     
 }
 
 //  DELETE `/api/notes/:id` - Should recieve a query paramter containing the id of a note to delete.
 
-app.delete("api/notes/:noteID"), function(req, res) {
-    let note = req.params.noteID;
+app.delete("api/notes/:noteTitle"), function(req, res) {
+    let note = req.params.noteTitle;
 
     for (var i = 0; i < noteData.length; i++) {
-        if (note === noteData[i].noteID) {
+        if (note === noteData[i].noteTitle) {
             noteData.splice(i, 1);
             return res.json(noteData);
         }
