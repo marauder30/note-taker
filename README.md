@@ -1,1 +1,11 @@
-TESTING TESTING
+# Note Taker
+
+## About
+
+## Screenshots
+
+## Technology
+
+## Link
+
+## Author
