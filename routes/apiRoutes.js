@@ -1,6 +1,6 @@
 // Load data
 
-const noteData = require("../db/data/noteData");
+const noteData = require("../public/assets/js/server")
 
 //  API
 
@@ -13,6 +13,7 @@ app.get("/api/notes"), function(req, res) {
 }
 
 //  POST `/api/notes` - Should recieve a new note to save on the request body, add it to the `db.json` file
+//  use ++integer (instead of i++) to add ID to notes, so they are accessible to delete
 
 app.post("/api/notes"), function(req, res) {
     let note = req.body;
@@ -39,4 +40,3 @@ app.delete("api/notes/:noteID"), function(req, res) {
 
 
 
-//  use ++integer (instead of i++) to add ID to notes, so they are accessible to delete

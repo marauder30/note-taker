@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
+const noteData = [];
 
 // Set up Express app
 
@@ -31,3 +32,5 @@ require("../../../routes/htmlRoutes")(app);
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
 });
+
+module.exports = noteData;
