@@ -46,11 +46,13 @@
 </html>
 
 <script type="text/javascript">
+var $noteId;
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
+var $delNoteBtn = $(".delete-note");
 
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
@@ -65,6 +67,7 @@ var getNotes = function() {
 
 // A function for saving a note to the db
 var saveNote = function(note) {
+  console.log(note);
   return $.ajax({
     url: "/api/notes",
     data: note,
@@ -74,6 +77,7 @@ var saveNote = function(note) {
 
 // A function for deleting a note from the db
 var deleteNote = function(id) {
+  console.log(id);
   return $.ajax({
     url: "api/notes/" + id,
     method: "DELETE"
@@ -102,6 +106,7 @@ var handleNoteSave = function() {
   var newNote = {
     title: $noteTitle.val(),
     text: $noteText.val()
+    // id: 
   };
 
   saveNote(newNote).then(function(data) {
@@ -115,13 +120,23 @@ var handleNoteDelete = function(event) {
   // prevents the click listener for the list from being called when the button inside of it is clicked
   event.stopPropagation();
 
-  var note = $(this)
+
+  // console.log(this);
+
+  let note = $(this)
     .parent(".list-group-item")
     .data();
 
-  if (activeNote.id === note.id) {
-    activeNote = {};
+  let active = ($(this).parent(".list-group-item").data());
+
+  console.log(note.id);
+  console.log(active);
+
+  if (active.id === note.id) {
+    active = {};
   }
+
+  console.log(active);
 
   deleteNote(note.id).then(function() {
     getAndRenderNotes();
@@ -180,6 +195,7 @@ var getAndRenderNotes = function() {
   });
 };
 
+$delNoteBtn.on("click", handleNoteDelete);
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
 $newNoteBtn.on("click", handleNewNoteView);

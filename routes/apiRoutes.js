@@ -36,8 +36,13 @@ module.exports = function(app) {
  
     });
 
-    app.delete("/api/notes", function(req, res) {
+    app.delete("/api/notes/:note", function(req, res) {
 
+      const note = req.body;
+      console.log(note);
+
+      db.splice(note, 1);
+      res.json(note);
 
     });
   
