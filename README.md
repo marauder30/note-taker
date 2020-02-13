@@ -10,6 +10,7 @@ The Note Taker application is a browser-based app that uses a Node server to sto
 The user is greeted with a clean landing page.
 
 ![](public/assets/notes1.png)
+__________________________________________________________________________________
 
 
 After clicking the 'Get Started' button, the user is sent to the app page. The interface has a note title and text field, a save button to save entries from those fields, a clear button to clear the fields, and a list of previously saved notes. The saved notes each have a trash icon, which can be clicked to delete that particular entry.
